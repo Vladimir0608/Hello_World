@@ -1,27 +1,33 @@
 import java.math.BigDecimal;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Unesite naziv proizvoda: ");
-        String naziv = scanner.nextLine();
 
-        System.out.print("Unesite cijenu proizvoda: ");
-        BigDecimal cijena = scanner.nextBigDecimal();
+        Racun racun1 = new TekuciRacun("11111", new BigDecimal("100.00"), "Vladimir Tolic");
+        Racun racun2 = new StedniRacun("22222", new BigDecimal("1000.00"), "Vladimir Tolic");
 
-        Proizvod proizvod = new Proizvod(naziv, cijena);
 
-        System.out.print("Unesite popust (u postocima): ");
-        BigDecimal popust = scanner.nextBigDecimal();
-        proizvod.postaviPopust(popust);
 
-        BigDecimal konacnaCijena = proizvod.izracunajCijenu();
+        System.out.println("Početno stanje na Tekućem računu: " + racun1.getStanje());
+        System.out.println("Početno stanje na Štednom računu: " + racun2.getStanje());
 
-        System.out.println("Naziv proizvoda: " + proizvod.getNaziv());
-        System.out.println("Cijena: " + proizvod.getCijena());
-        System.out.println("Popust: " + proizvod.getPopust() + "%");
-        System.out.println("Konačna cijena nakon popusta: " + konacnaCijena);
+
+
+        racun1.uplata(new BigDecimal("500.00"));
+
+
+
+        racun2.uplata(new BigDecimal("1000.00"));
+
+
+
+        racun1.isplata(new BigDecimal("200.00"));
+
+
+
+
+        racun1.obracunKamate();
+        racun2.obracunKamate();
     }
 }
