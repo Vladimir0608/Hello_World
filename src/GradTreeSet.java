@@ -40,7 +40,5 @@ public class GradTreeSet {
         for (String grad : gradovi) {
             System.out.println(grad);
         }
-
-        scanner.close();
     }
 }
